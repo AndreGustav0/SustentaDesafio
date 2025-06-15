@@ -35,7 +35,6 @@ const PontosColeta = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8">
-        {/* Header */}
         <div className="text-center mb-12">
           <MapPin className="mx-auto text-green-600 mb-4" size={48} />
           <h1 className="text-4xl font-bold text-gray-800 mb-4">Pontos de Coleta</h1>
@@ -43,8 +42,6 @@ const PontosColeta = () => {
             Encontre os pontos de coleta mais próximos para descartar seus resíduos de forma responsável e sustentável.
           </p>
         </div>
-
-        {/* Collection Points Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {collectionPoints?.map((point) => {
             const wasteTypes = Array.isArray(point.waste_types) ? point.waste_types : JSON.parse(point.waste_types as string);
@@ -78,8 +75,6 @@ const PontosColeta = () => {
             );
           })}
         </div>
-
-        {/* Info Section */}
         <div className="bg-green-600 text-white p-8 rounded-lg">
           <h2 className="text-2xl font-bold mb-6">Dicas para Descarte Responsável</h2>
           <div className="grid md:grid-cols-2 gap-8">
@@ -104,7 +99,6 @@ const PontosColeta = () => {
           </div>
         </div>
 
-        {/* Call to Action */}
         <div className="mt-8 text-center bg-blue-50 p-6 rounded-lg border border-blue-200">
           <h3 className="text-xl font-semibold text-blue-800 mb-2">
             Não encontrou um ponto de coleta próximo?

@@ -21,7 +21,6 @@ const AppContent = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Só mostra o header se o usuário estiver logado */}
       {user && !loading && <Header />}
       
       <Switch>

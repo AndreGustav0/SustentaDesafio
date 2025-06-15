@@ -8,7 +8,6 @@ export const users = pgTable("users", {
   password: text("password").notNull(),
 });
 
-// Articles table
 export const articles = pgTable("articles", {
   id: uuid("id").primaryKey().defaultRandom(),
   title: text("title").notNull(),
@@ -17,7 +16,6 @@ export const articles = pgTable("articles", {
   created_at: timestamp("created_at").defaultNow().notNull(),
 });
 
-// Challenges table
 export const challenges = pgTable("challenges", {
   id: uuid("id").primaryKey().defaultRandom(),
   challenge: text("challenge").notNull(),
@@ -26,19 +24,17 @@ export const challenges = pgTable("challenges", {
   created_at: timestamp("created_at").defaultNow().notNull(),
 });
 
-// User scores table
 export const userScores = pgTable("user_scores", {
   id: uuid("id").primaryKey().defaultRandom(),
-  user_id: text("user_id").notNull(), // Supabase user ID
+  user_id: text("user_id").notNull(), 
   total_points: integer("total_points").default(0).notNull(),
   challenge_points: integer("challenge_points").default(0).notNull(),
   quiz_points: integer("quiz_points").default(0).notNull(),
-  rank: text("rank").default("bronze").notNull(), // bronze, silver, gold
+  rank: text("rank").default("bronze").notNull(),
   created_at: timestamp("created_at").defaultNow().notNull(),
   updated_at: timestamp("updated_at").defaultNow().notNull(),
 });
 
-// User challenge progress table
 export const userChallengeProgress = pgTable("user_challenge_progress", {
   id: uuid("id").primaryKey().defaultRandom(),
   user_id: text("user_id").notNull(),
@@ -49,7 +45,6 @@ export const userChallengeProgress = pgTable("user_challenge_progress", {
   created_at: timestamp("created_at").defaultNow().notNull(),
 });
 
-// Quiz questions table
 export const quizQuestions = pgTable("quiz_questions", {
   id: uuid("id").primaryKey().defaultRandom(),
   question: text("question").notNull(),
@@ -59,7 +54,6 @@ export const quizQuestions = pgTable("quiz_questions", {
   created_at: timestamp("created_at").defaultNow().notNull(),
 });
 
-// User quiz results table
 export const userQuizResults = pgTable("user_quiz_results", {
   id: uuid("id").primaryKey().defaultRandom(),
   user_id: text("user_id").notNull(),
@@ -69,7 +63,6 @@ export const userQuizResults = pgTable("user_quiz_results", {
   answered_at: timestamp("answered_at").defaultNow().notNull(),
 });
 
-// Collection points table
 export const collectionPoints = pgTable("collection_points", {
   id: uuid("id").primaryKey().defaultRandom(),
   name: text("name").notNull(),
@@ -78,7 +71,6 @@ export const collectionPoints = pgTable("collection_points", {
   created_at: timestamp("created_at").defaultNow().notNull(),
 });
 
-// Daily phrases table
 export const dailyPhrases = pgTable("daily_phrases", {
   id: uuid("id").primaryKey().defaultRandom(),
   phrase: text("phrase").notNull(),

@@ -7,7 +7,6 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-blue-50">
       <div className="container mx-auto px-4 py-8">
-        {/* Hero Section */}
         <div className="text-center mb-16 relative">
           <div className="absolute inset-0 bg-gradient-to-r from-green-400/10 to-blue-400/10 rounded-3xl blur-3xl"></div>
           <div className="relative">
@@ -41,12 +40,10 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Daily Phrase */}
         <div className="mb-16">
           <DailyPhrase />
         </div>
 
-        {/* Features Grid */}
         <div className="grid md:grid-cols-3 gap-8 mb-16">
           <div className="group text-center p-8 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-white/50 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
             <div className="mb-6 relative">
@@ -88,7 +85,6 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Stats Section */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
           <div className="text-center p-6 bg-white/60 backdrop-blur-sm rounded-xl">
             <div className="text-3xl font-bold text-green-600 mb-2">500+</div>
@@ -108,7 +104,6 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Call to Action */}
         <div className="relative overflow-hidden bg-gradient-to-r from-green-600 via-emerald-600 to-blue-600 text-white p-12 rounded-3xl shadow-2xl">
           <div className="absolute inset-0 bg-black/10"></div>
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-32 translate-x-32"></div>

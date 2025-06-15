@@ -6,14 +6,12 @@ import { generateChallenges, generateQuizQuestions } from "./openai";
 import { z } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // User scores routes
   app.get("/api/user-score/:userId", async (req, res) => {
     try {
       const { userId } = req.params;
       const score = await storage.getUserScore(userId);
 
       if (!score) {
-        // Create initial score for new user
         const newScore = await storage.createUserScore({
           user_id: userId,
           total_points: 0,
@@ -31,7 +29,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Challenges routes
   app.get("/api/challenges", async (req, res) => {
     try {
       const challenges = await storage.getChallenges();
@@ -42,7 +39,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Seed initial data if empty
   app.post("/api/seed-data", async (req, res) => {
     try {
       const existingChallenges = await storage.getChallenges();
@@ -53,7 +49,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
         questions: []
       };
 
-      // Seed challenges if empty
       if (existingChallenges.length === 0) {
         const defaultChallenges = [
           { challenge: "Reutilize uma embalagem ao invés de descartá-la", points: 5 },
@@ -76,7 +71,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
       }
 
-      // Seed quiz questions if empty
       if (existingQuestions.length === 0) {
         const allMockedQuestions = [
           {
@@ -201,7 +195,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
           }
         ];
 
-        // Select 5 random questions for the quiz
         const shuffledQuestions = allMockedQuestions.sort(() => Math.random() - 0.5);
         const defaultQuestions = shuffledQuestions.slice(0, 5);
 
@@ -247,7 +240,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Challenge progress routes
   app.get("/api/user-progress/:userId", async (req, res) => {
     try {
       const { userId } = req.params;
@@ -274,7 +266,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Quiz routes
   app.get("/api/quiz-questions", async (req, res) => {
     try {
       const questions = await storage.getQuizQuestions();
@@ -308,7 +299,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       const isCorrect = selectedAnswer === correctAnswer;
-      const pointsEarned = isCorrect ? 10 : 0; // Default 10 points per correct answer
+      const pointsEarned = isCorrect ? 10 : 0;
 
       const result = await storage.submitQuizAnswer(userId, questionId, isCorrect, pointsEarned);
       res.json(result);
@@ -329,10 +320,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // AI Generation routes
   app.post("/api/generate-challenges", async (req, res) => {
     try {
-      // Use fallback challenges directly to avoid OpenAI quota issues
       const fallbackChallenges = [
         { challenge: "Substitua uma refeição por uma opção mais sustentável hoje", points: 8 },
         { challenge: "Use transporte público ou bicicleta em vez do carro", points: 10 },
@@ -346,14 +335,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
         { challenge: "Doe roupas ou objetos que não usa mais", points: 8 }
       ];
 
-      // Randomly select 5 challenges
       const shuffled = fallbackChallenges.sort(() => Math.random() - 0.5);
       const selectedChallenges = shuffled.slice(0, 5);
 
-      // Clear all existing challenges before adding new ones
       await storage.clearAllChallenges();
 
-      // Save generated challenges to database
       const savedChallenges = [];
       for (const challengeData of selectedChallenges) {
         const challenge = await storage.createChallenge({
@@ -373,7 +359,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/generate-quiz-questions", async (req, res) => {
     try {
-      // All available quiz questions
       const allQuizQuestions = [
         {
           question: "Qual é o principal gás responsável pelo efeito estufa?",
@@ -497,11 +482,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
       ];
 
-      // Shuffle and select 5 random questions
       const shuffledQuestions = allQuizQuestions.sort(() => Math.random() - 0.5);
       const selectedQuestions = shuffledQuestions.slice(0, 5);
 
-      // Clear existing questions and save new ones
       await storage.clearQuizQuestions();
 
       const savedQuestions = [];
@@ -527,7 +510,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
   return httpServer;
 }
 
-// Function to determine rank based on total points
 export function determineRank(totalPoints: number): string {
   let rank = 'bronze';
   if (totalPoints >= 200) {

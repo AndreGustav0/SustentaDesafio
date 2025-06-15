@@ -27,7 +27,6 @@ const Desafios = () => {
   const previousRankRef = useRef<string>("");
   const previousPointsRef = useRef<number>(0);
 
-  // Auto-seed data if no challenges exist
   useEffect(() => {
     if (
       !challengesLoading &&
@@ -56,15 +55,12 @@ const Desafios = () => {
       .length;
   }, [challenges, progressMap]);
 
-  // Detect rank upgrades
   useEffect(() => {
     if (userScore && !scoreLoading) {
       const currentRank = userScore.rank;
       const currentPoints = userScore.total_points;
 
-      // Check if this is not the initial load and rank has upgraded
       if (previousRankRef.current && previousRankRef.current !== currentRank) {
-        // Only show popup for upgrades (not downgrades)
         const rankOrder = { bronze: 0, silver: 1, gold: 2 };
         if (
           rankOrder[currentRank as keyof typeof rankOrder] >
@@ -112,7 +108,6 @@ const Desafios = () => {
         points={upgradeInfo.points}
       />
       <div className="container mx-auto px-4 py-8">
-        {/* Header */}
         <div className="text-center mb-8">
           <Target className="mx-auto text-blue-600 mb-4" size={48} />
           <h1 className="text-4xl font-bold text-gray-800 mb-4">
@@ -124,12 +119,9 @@ const Desafios = () => {
           </p>
         </div>
 
-        {/* Random Challenge */}
         <div className="mb-8">
           <RandomChallenge />
         </div>
-
-        {/* Progress Counter */}
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-8">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
@@ -155,7 +147,6 @@ const Desafios = () => {
             </div>
           </div>
 
-          {/* Progress Bar */}
           <div className="mt-4 bg-gray-200 rounded-full h-3">
             <div
               className="bg-gradient-to-r from-blue-500 to-green-500 h-3 rounded-full transition-all duration-500"
@@ -165,8 +156,6 @@ const Desafios = () => {
             ></div>
           </div>
         </div>
-
-        {/* Generation Button */}
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-8">
           <div className="flex items-center justify-between">
             <div>
@@ -197,7 +186,6 @@ const Desafios = () => {
           </div>
         </div>
 
-        {/* User Score Display */}
         {userScore && (
           <div className="bg-gradient-to-r from-blue-600 to-green-600 text-white p-6 rounded-lg mb-8">
             <div className="flex items-center justify-between">
@@ -215,8 +203,6 @@ const Desafios = () => {
             </div>
           </div>
         )}
-
-        {/* Challenges List */}
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-gray-800 mb-6">
             Seus Desafios
@@ -231,7 +217,6 @@ const Desafios = () => {
           ))}
         </div>
 
-        {/* Completion Message */}
         {challenges &&
           completedCount === challenges.length &&
           challenges.length > 0 && (

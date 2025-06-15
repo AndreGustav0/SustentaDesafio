@@ -15,7 +15,6 @@ const Quiz = () => {
   const [showResults, setShowResults] = useState(false);
   const [answeredQuestions, setAnsweredQuestions] = useState<Set<number>>(new Set());
 
-  // Auto-seed data if no quiz questions exist
   useEffect(() => {
     if (!isLoading && quizData && quizData.length === 0 && !seedData.isPending) {
       console.log('No quiz questions found, seeding initial data...');
@@ -32,7 +31,6 @@ const Quiz = () => {
   const handleNext = () => {
     if (!quizData) return;
 
-    // Submit answer for current question if not already answered
     if (!answeredQuestions.has(currentQuestion)) {
       const currentQuestionData = quizData[currentQuestion];
       const selectedAnswer = selectedAnswers[currentQuestion];
@@ -70,7 +68,6 @@ const Quiz = () => {
     setSelectedAnswers([]);
     setShowResults(false);
     setAnsweredQuestions(new Set());
-    // Generate new quiz questions
     generateQuestions.mutate();
   };
 
@@ -141,7 +138,6 @@ const Quiz = () => {
                 </p>
               </div>
 
-              {/* Detailed Results */}
               <div className="text-left mb-8">
                 <h3 className="text-lg font-semibold text-gray-800 mb-4">Respostas Detalhadas:</h3>
                 <div className="space-y-4">
@@ -187,7 +183,6 @@ const Quiz = () => {
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-2xl mx-auto">
-          {/* Header */}
           <div className="text-center mb-8">
             <HelpCircle className="mx-auto text-blue-600 mb-4" size={48} />
             <h1 className="text-4xl font-bold text-gray-800 mb-4">Quiz de Sustentabilidade</h1>
@@ -204,7 +199,6 @@ const Quiz = () => {
             </Button>
           </div>
 
-          {/* Progress */}
           <div className="mb-8">
             <div className="flex justify-between items-center mb-2">
               <span className="text-sm text-gray-600">Progresso</span>
@@ -220,7 +214,6 @@ const Quiz = () => {
             </div>
           </div>
 
-          {/* Question */}
           <div className="bg-white p-8 rounded-lg shadow-md">
             <h2 className="text-xl font-semibold text-gray-800 mb-6">
               {question.question}
@@ -252,8 +245,6 @@ const Quiz = () => {
                 </button>
               ))}
             </div>
-
-            {/* Navigation */}
             <div className="flex justify-between">
               <button
                 onClick={handlePrevious}

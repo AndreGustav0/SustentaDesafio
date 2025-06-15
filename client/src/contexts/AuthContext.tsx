@@ -30,7 +30,6 @@ export const useAuth = () => {
   return context;
 };
 
-// Cleanup function to prevent auth limbo states
 const cleanupAuthState = () => {
   Object.keys(localStorage).forEach((key) => {
     if (key.startsWith('supabase.auth.') || key.includes('sb-')) {
@@ -53,7 +52,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     console.log('Setting up auth state listener...');
     
-    // Set up auth state listener FIRST
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, session) => {
         console.log('Auth state changed:', event, session?.user?.email);
@@ -63,7 +61,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       }
     );
 
-    // THEN check for existing session
     supabase.auth.getSession().then(({ data: { session } }) => {
       console.log('Existing session found:', session?.user?.email);
       setSession(session);
@@ -81,7 +78,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     console.log('Attempting sign up for:', email);
     
     try {
-      // Clean up existing state first
       cleanupAuthState();
       
       const redirectUrl = `${window.location.origin}/`;
@@ -107,8 +103,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           title: "Cadastro realizado!",
           description: "Você foi cadastrado com sucesso!",
         });
-        
-        // Force page reload to ensure clean state
+
         if (data.user && data.session) {
           setTimeout(() => {
             window.location.href = '/';
@@ -127,10 +122,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     console.log('Attempting sign in for:', email);
     
     try {
-      // Clean up existing state first
       cleanupAuthState();
       
-      // Attempt global sign out to clear any existing sessions
       try {
         await supabase.auth.signOut({ scope: 'global' });
       } catch (err) {
@@ -156,7 +149,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           description: "Bem-vindo de volta!",
         });
         
-        // Force page reload to ensure clean state
         if (data.user) {
           setTimeout(() => {
             window.location.href = '/';
@@ -175,10 +167,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     console.log('Attempting sign out');
     
     try {
-      // Clean up auth state first
       cleanupAuthState();
       
-      // Attempt global sign out
       try {
         await supabase.auth.signOut({ scope: 'global' });
       } catch (err) {
@@ -189,14 +179,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         title: "Logout realizado",
         description: "Você foi desconectado com sucesso.",
       });
-      
-      // Force page reload for clean state
+
       setTimeout(() => {
         window.location.href = '/auth';
       }, 500);
     } catch (error) {
       console.error('Sign out exception:', error);
-      // Force navigation even if there's an error
       window.location.href = '/auth';
     }
   };

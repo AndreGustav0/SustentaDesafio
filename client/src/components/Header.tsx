@@ -27,7 +27,6 @@ const Header = () => {
     <header className="bg-gradient-to-r from-green-600 to-green-700 text-white shadow-xl border-b-4 border-green-500">
       <div className="container mx-auto px-6 py-5">
         <div className="flex items-center justify-between">
-          {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 text-white hover:text-green-100 transition-colors group">
             <div className="bg-white text-green-600 p-2 rounded-full group-hover:scale-110 transition-transform">
               🌱
@@ -38,7 +37,6 @@ const Header = () => {
             </div>
           </Link>
           
-          {/* Navigation */}
           <nav className="hidden md:flex items-center space-x-2 bg-green-700/30 rounded-full px-6 py-2 backdrop-blur-sm">
             {navItems.map(({ path, label, icon: Icon }) => (
               <Link
@@ -56,13 +54,11 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* User Section */}
           <div className="flex items-center space-x-4">
             {loading ? (
               <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
             ) : user ? (
               <>
-                {/* User Info */}
                 <div className="hidden lg:flex items-center space-x-3 bg-green-700/30 rounded-full px-4 py-2 backdrop-blur-sm">
                   <div className="bg-white text-green-600 p-1.5 rounded-full">
                     <User size={14} />
@@ -85,7 +81,6 @@ const Header = () => {
                   )}
                 </div>
                 
-                {/* Sign Out Button */}
                 <button
                   onClick={handleSignOut}
                   className="flex items-center space-x-2 px-4 py-2 rounded-full bg-red-500 hover:bg-red-600 transition-colors shadow-lg"
@@ -105,7 +100,6 @@ const Header = () => {
             )}
           </div>
 
-          {/* Mobile Navigation */}
           <div className="md:hidden">
             <nav className="flex space-x-1 bg-green-700/30 rounded-full p-1 backdrop-blur-sm">
               {navItems.map(({ path, icon: Icon }) => (

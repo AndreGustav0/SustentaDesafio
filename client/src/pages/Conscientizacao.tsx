@@ -4,9 +4,7 @@ import { Link } from 'wouter';
 const Conscientizacao = () => {
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
       <div className="relative h-screen flex items-center justify-center text-white overflow-hidden">
-        {/* Background com gradiente aprimorado */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
@@ -14,7 +12,6 @@ const Conscientizacao = () => {
           }}
         ></div>
 
-        {/* Elementos decorativos flutuantes */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-20 left-10 w-4 h-4 bg-green-300 rounded-full animate-pulse opacity-60"></div>
           <div className="absolute top-40 right-20 w-6 h-6 bg-emerald-400 rounded-full animate-bounce opacity-40"></div>
@@ -23,9 +20,8 @@ const Conscientizacao = () => {
           <div className="absolute bottom-20 right-10 w-4 h-4 bg-cyan-300 rounded-full animate-bounce opacity-60"></div>
         </div>
 
-        {/* Conteúdo principal */}
         <div className="relative z-10 text-center max-w-5xl mx-auto px-4">
-          {/* Badge superior */}
+
           <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md border border-white/30 text-white px-6 py-3 rounded-full text-sm font-medium mb-8 shadow-lg">
             <Leaf size={18} className="text-green-200" />
             <span className="bg-gradient-to-r from-green-200 to-emerald-200 bg-clip-text text-transparent font-semibold">
@@ -33,7 +29,6 @@ const Conscientizacao = () => {
             </span>
           </div>
 
-          {/* Título principal com efeito de gradiente */}
           <h1 className="text-5xl md:text-8xl font-black mb-8 leading-tight">
             <span className="bg-gradient-to-r from-white via-green-100 to-emerald-200 bg-clip-text text-transparent drop-shadow-2xl">
               Conserve o
@@ -44,7 +39,6 @@ const Conscientizacao = () => {
             </span>
           </h1>
 
-          {/* Subtítulo estilizado */}
           <div className="mb-10">
             <p className="text-2xl md:text-4xl font-medium mb-4 text-green-100 drop-shadow-lg">
               Pequenas ações, grande impacto
@@ -52,7 +46,6 @@ const Conscientizacao = () => {
             <div className="w-32 h-1 bg-gradient-to-r from-green-400 to-emerald-300 mx-auto rounded-full shadow-lg"></div>
           </div>
 
-          {/* Call to action adicional */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link 
               to="/jogo-incendio"
@@ -80,7 +73,6 @@ const Conscientizacao = () => {
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8 mb-12">
-            {/* Desmatamento */}
             <div className="bg-white p-8 rounded-xl shadow-lg border-l-4 border-red-500">
               <div className="flex items-center mb-4">
                 <TreePine className="text-red-500 mr-3" size={32} />
@@ -97,7 +89,6 @@ const Conscientizacao = () => {
               </div>
             </div>
 
-            {/* Progresso Positivo */}
             <div className="bg-white p-8 rounded-xl shadow-lg border-l-4 border-green-500">
               <div className="flex items-center mb-4">
                 <Leaf className="text-green-500 mr-3" size={32} />
@@ -114,7 +105,6 @@ const Conscientizacao = () => {
               </div>
             </div>
 
-            {/* Queimadas */}
             <div className="bg-white p-8 rounded-xl shadow-lg border-l-4 border-orange-500">
               <div className="flex items-center mb-4">
                 <Wind className="text-orange-500 mr-3" size={32} />
@@ -134,11 +124,9 @@ const Conscientizacao = () => {
         </div>
       </div>
 
-      {/* Problems and Solutions Section */}
       <div className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12">
-            {/* Problems */}
             <div>
               <h2 className="text-3xl font-bold text-gray-800 mb-8 flex items-center">
                 <Wind className="text-red-500 mr-3" size={32} />
@@ -172,7 +160,6 @@ const Conscientizacao = () => {
               </div>
             </div>
 
-            {/* Solutions */}
             <div>
               <h2 className="text-3xl font-bold text-gray-800 mb-8 flex items-center">
                 <Leaf className="text-green-500 mr-3" size={32} />
@@ -209,7 +196,6 @@ const Conscientizacao = () => {
         </div>
       </div>
 
-      {/* Individual Actions Checklist */}
       <div className="py-16 bg-gradient-to-br from-green-50 to-blue-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-gray-800 mb-4">
@@ -267,7 +253,6 @@ const Conscientizacao = () => {
         </div>
       </div>
 
-      {/* Call to Action Footer */}
       <div className="py-16 bg-gradient-to-r from-green-600 via-emerald-600 to-blue-600 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">

@@ -93,7 +93,6 @@ export const useToggleChallengeProgress = () => {
       if (!user) throw new Error('User not authenticated');
 
       if (isCompleted) {
-        // Create or update progress
         const { data, error } = await supabase
           .from('user_challenge_progress')
           .upsert({
@@ -106,7 +105,6 @@ export const useToggleChallengeProgress = () => {
         if (error) throw error;
         return data;
       } else {
-        // Remove progress
         const { error } = await supabase
           .from('user_challenge_progress')
           .delete()

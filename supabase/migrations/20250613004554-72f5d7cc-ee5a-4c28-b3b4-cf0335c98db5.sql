@@ -1,5 +1,4 @@
 
--- Create table for articles
 CREATE TABLE public.articles (
   id UUID NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
   title TEXT NOT NULL,
@@ -8,7 +7,6 @@ CREATE TABLE public.articles (
   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now()
 );
 
--- Create table for challenges
 CREATE TABLE public.challenges (
   id UUID NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
   challenge TEXT NOT NULL,
@@ -16,7 +14,6 @@ CREATE TABLE public.challenges (
   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now()
 );
 
--- Create table for user challenge progress
 CREATE TABLE public.user_challenge_progress (
   id UUID NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
   user_id UUID REFERENCES auth.users NOT NULL,
@@ -27,7 +24,6 @@ CREATE TABLE public.user_challenge_progress (
   UNIQUE(user_id, challenge_id)
 );
 
--- Create table for quiz questions
 CREATE TABLE public.quiz_questions (
   id UUID NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
   question TEXT NOT NULL,
@@ -36,7 +32,6 @@ CREATE TABLE public.quiz_questions (
   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now()
 );
 
--- Create table for collection points
 CREATE TABLE public.collection_points (
   id UUID NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
   name TEXT NOT NULL,
@@ -45,14 +40,12 @@ CREATE TABLE public.collection_points (
   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now()
 );
 
--- Create table for daily phrases
 CREATE TABLE public.daily_phrases (
   id UUID NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
   phrase TEXT NOT NULL,
   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now()
 );
 
--- Enable Row Level Security on all tables
 ALTER TABLE public.articles ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.challenges ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.user_challenge_progress ENABLE ROW LEVEL SECURITY;
@@ -60,19 +53,16 @@ ALTER TABLE public.quiz_questions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.collection_points ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.daily_phrases ENABLE ROW LEVEL SECURITY;
 
--- Create policies for public read access to static content
 CREATE POLICY "Anyone can read articles" ON public.articles FOR SELECT USING (true);
 CREATE POLICY "Anyone can read challenges" ON public.challenges FOR SELECT USING (true);
 CREATE POLICY "Anyone can read quiz questions" ON public.quiz_questions FOR SELECT USING (true);
 CREATE POLICY "Anyone can read collection points" ON public.collection_points FOR SELECT USING (true);
 CREATE POLICY "Anyone can read daily phrases" ON public.daily_phrases FOR SELECT USING (true);
 
--- Create policies for user challenge progress (users can only see/modify their own progress)
 CREATE POLICY "Users can view their own progress" ON public.user_challenge_progress FOR SELECT USING (auth.uid() = user_id);
 CREATE POLICY "Users can create their own progress" ON public.user_challenge_progress FOR INSERT WITH CHECK (auth.uid() = user_id);
 CREATE POLICY "Users can update their own progress" ON public.user_challenge_progress FOR UPDATE USING (auth.uid() = user_id);
 
--- Insert initial data
 INSERT INTO public.articles (title, description, image) VALUES
 ('Como Reciclar Corretamente', 'Aprenda as melhores práticas para separar e descartar materiais recicláveis, contribuindo para um planeta mais limpo.', '/placeholder.svg'),
 ('Compostagem Doméstica', 'Descubra como transformar restos de comida em adubo natural para suas plantas, reduzindo o desperdício orgânico.', '/placeholder.svg'),

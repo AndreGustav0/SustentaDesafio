@@ -10,9 +10,9 @@ interface Cell {
 }
 
 const GRID_SIZE = 10;
-const FIRE_SPREAD_INTERVAL = 2000; // 2 seconds
-const NEW_FIRE_INTERVAL = 3000; // 3 seconds
-const GAME_DURATION = 60; // 60 seconds
+const FIRE_SPREAD_INTERVAL = 2000;
+const NEW_FIRE_INTERVAL = 3000; 
+const GAME_DURATION = 60; 
 const MAX_FIRE_CELLS = 10;
 
 const JogoIncendio: React.FC = () => {
@@ -22,7 +22,6 @@ const JogoIncendio: React.FC = () => {
   const [fireCellsCount, setFireCellsCount] = useState(0);
   const [extinguishedCount, setExtinguishedCount] = useState(0);
 
-  // Initialize grid
   const initializeGrid = useCallback(() => {
     const newGrid: Cell[][] = [];
     for (let row = 0; row < GRID_SIZE; row++) {
@@ -38,10 +37,8 @@ const JogoIncendio: React.FC = () => {
     return newGrid;
   }, []);
 
-  // Reset game
   const resetGame = useCallback(() => {
     const newGrid = initializeGrid();
-    // Start with 2-3 random fires
     const firePositions = [];
     for (let i = 0; i < 3; i++) {
       const row = Math.floor(Math.random() * GRID_SIZE);
@@ -59,7 +56,6 @@ const JogoIncendio: React.FC = () => {
     setExtinguishedCount(0);
   }, [initializeGrid]);
 
-  // Count fire cells
   const countFireCells = useCallback((currentGrid: Cell[][]) => {
     let count = 0;
     currentGrid.forEach(row => {
@@ -70,7 +66,6 @@ const JogoIncendio: React.FC = () => {
     return count;
   }, []);
 
-  // Add new fire randomly
   const addRandomFire = useCallback((currentGrid: Cell[][]) => {
     const normalCells = [];
     for (let row = 0; row < GRID_SIZE; row++) {
@@ -91,15 +86,13 @@ const JogoIncendio: React.FC = () => {
     return currentGrid;
   }, []);
 
-  // Spread fire to adjacent cells
   const spreadFire = useCallback((currentGrid: Cell[][]) => {
     const newGrid = currentGrid.map(row => [...row]);
-    const fireSpreadChance = 0.3; // 30% chance to spread to adjacent cell
+    const fireSpreadChance = 0.3; 
     
     for (let row = 0; row < GRID_SIZE; row++) {
       for (let col = 0; col < GRID_SIZE; col++) {
         if (currentGrid[row][col].state === 'fire') {
-          // Check adjacent cells (up, down, left, right)
           const adjacent = [
             { r: row - 1, c: col },
             { r: row + 1, c: col },
@@ -124,7 +117,6 @@ const JogoIncendio: React.FC = () => {
     return newGrid;
   }, []);
 
-  // Handle cell click (extinguish fire)
   const handleCellClick = useCallback((row: number, col: number) => {
     if (gameState !== 'playing') return;
     
@@ -138,7 +130,6 @@ const JogoIncendio: React.FC = () => {
     });
   }, [gameState]);
 
-  // Game timer
   useEffect(() => {
     if (gameState === 'playing' && timeLeft > 0) {
       const timer = setTimeout(() => {
@@ -148,7 +139,6 @@ const JogoIncendio: React.FC = () => {
     }
   }, [timeLeft, gameState]);
 
-  // Fire spread logic
   useEffect(() => {
     if (gameState !== 'playing') return;
     
@@ -162,7 +152,6 @@ const JogoIncendio: React.FC = () => {
     return () => clearInterval(spreadTimer);
   }, [gameState, spreadFire]);
 
-  // Add new fires periodically
   useEffect(() => {
     if (gameState !== 'playing') return;
     
@@ -179,13 +168,11 @@ const JogoIncendio: React.FC = () => {
     return () => clearInterval(fireTimer);
   }, [gameState, addRandomFire, countFireCells]);
 
-  // Update fire count
   useEffect(() => {
     const count = countFireCells(grid);
     setFireCellsCount(count);
   }, [grid, countFireCells]);
 
-  // Check win/lose conditions
   useEffect(() => {
     if (gameState !== 'playing') return;
     
@@ -200,7 +187,6 @@ const JogoIncendio: React.FC = () => {
     }
   }, [timeLeft, fireCellsCount, gameState]);
 
-  // Initialize game on mount
   useEffect(() => {
     resetGame();
   }, [resetGame]);
@@ -232,7 +218,7 @@ const JogoIncendio: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-100 to-blue-100 p-4">
       <div className="container mx-auto max-w-4xl">
-        {/* Header */}
+
         <div className="flex items-center justify-between mb-6">
           <Link 
             href="/conscientizacao" 
@@ -255,7 +241,6 @@ const JogoIncendio: React.FC = () => {
           </button>
         </div>
 
-        {/* Game Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
           <div className="bg-white p-4 rounded-lg shadow-lg text-center">
             <div className="text-2xl font-bold text-blue-600">
@@ -286,7 +271,6 @@ const JogoIncendio: React.FC = () => {
           </div>
         </div>
 
-        {/* Game Instructions */}
         <div className="bg-white p-4 rounded-lg shadow-lg mb-6">
           <p className="text-center text-gray-700">
             <strong>Instruções:</strong> Clique nas células em chamas (🔥) para apagar o fogo. 
@@ -294,7 +278,6 @@ const JogoIncendio: React.FC = () => {
           </p>
         </div>
 
-        {/* Game Grid */}
         <div className="bg-white p-6 rounded-lg shadow-lg mb-6">
           <div 
             className="grid gap-1 mx-auto max-w-md"
@@ -320,7 +303,6 @@ const JogoIncendio: React.FC = () => {
           </div>
         </div>
 
-        {/* Game Over Modal */}
         {(gameState === 'won' || gameState === 'lost') && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-white p-8 rounded-xl shadow-2xl max-w-md w-full mx-4 text-center">
@@ -367,7 +349,6 @@ const JogoIncendio: React.FC = () => {
           </div>
         )}
 
-        {/* Environmental Message */}
         <div className="bg-gradient-to-r from-green-500 to-emerald-600 text-white p-6 rounded-lg shadow-lg text-center">
           <h3 className="text-xl font-bold mb-2">💚 Sabia que...</h3>
           <p className="text-green-100">
