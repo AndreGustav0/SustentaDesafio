@@ -1,0 +1,23 @@
+A página deve abrir com um “hero” visual composto por uma imagem natural impactante (como floresta, rio ou céu limpo), acompanhada do título Conserve o Meio Ambiente e do subtítulo Pequenas ações, grande impacto, para despertar interesse imediato. Em seguida, apresente informações estatísticas reais, organizadas em blocos ou cards: destaque que o desmatamento na Amazônia Legal cresceu 68% em janeiro de 2025, atingindo 133 km² — o equivalente a mais de 400 campos de futebol destruídos por dia 
+imazon.org.br
+; informe também que, apesar dessa escalada no início do ano, o Saldo anual do bioma mostrou queda de 22% na taxa de desmatamento entre agosto de 2022 e julho de 2023, refletindo esforços de fiscalização 
+en.wikipedia.org
++1
+brasildefato.com.br
++1
+. Adicionalmente, inclua dados sobre queimadas: segundo avaliação de outubro de 2024, a área queimada foi 150% maior que em 2023, liberando cerca de 180 megatoneladas de carbono 
+en.wikipedia.org
++1
+pt.wikipedia.org
++1
+.
+
+Depois dos dados, contenha uma seção que descreva os principais problemas ambientais — desmatamento acelerado, queimadas crescentes, emissões de carbono — contextualizando-os com os números já apresentados. Ao lado, apresente soluções viáveis, como: intensificar o monitoramento ambiental apoiado por órgãos como IBAMA e ICMBio (que passaram por ações reforçadas recentemente), potencializar ações do PPCDAm 2023–2027 com metas claras de desmatamento zero até 2030 
+pt.wikipedia.org
+ e promover bioeconomia e ordenamento sustentável do uso da terra.
+
+Em seguida, traga um checklist de ações individuais com ícones simples: separar o lixo reciclável, reduzir o consumo de água, energia e alimentos, evitar o uso de plásticos descartáveis, consumir produtos certificados de origem sustentável. Estas sugestões devem enfatizar que cada pessoa pode contribuir diariamente.
+
+Finalize com uma chamada para ação no rodapé, como o botão Saiba mais sobre conservação, que direcione o visitante a uma ONG ou portal especializado, acompanhado de uma frase de impacto, por exemplo: “Cada gesto conta. Junte-se a essa causa.”
+
+O design deve utilizar cores suaves (verde para natureza, azul para água, cinza claro para fundos), tipografia legível (sans serif, como Roboto ou Open Sans), com hierarquia visual clara: títulos grandes, subtítulos menores e texto corporal harmonioso.
